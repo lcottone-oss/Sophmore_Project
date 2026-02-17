@@ -8,11 +8,12 @@ import pygame
 width = 500
 height = 500
 win = pygame.display.set_mode((width,height))
-pygame.display.set_caption("Client")
+pygame.display.set_caption("Client") #Labes window
 
 clientNumber = 0
 
 class Player():
+    #initiates all the variables needed to move the rectangle
     def __init__(self, x, y, width, height, color):
         self.x = x
         self.y = y
@@ -22,9 +23,11 @@ class Player():
         self.rect = (x,y,width,height)
         self.vel = 3
     
+    #Draws rectangle
     def draw(self, win):
         pygame.draw.rect(win, self.color, self.rect)
     
+    #recognizes if key is pressed and sets the new rectangle dimensions
     def move(self):
         key = pygame.key.get_pressed()
 
@@ -36,8 +39,9 @@ class Player():
             self.y -=self.vel
         if key[pygame.K_DOWN]:
             self.y += self.vel
-        self.rect = (self.x, self.y, self.width, self.height)
+        self.rect = (self.x, self.y, self.width, self.height) #redrawing rectangle dimensions
 
+#draws window
 def redrawWindow(win,player):
     win.fill((255,255,255))
     player.draw(win)
@@ -48,7 +52,7 @@ def main():
     p = Player(50,50,100,100,(0,255,0))
     clock = pygame.time.Clock()
     while run:
-        clock.tick(60)
+        clock.tick(60) #refresh rate
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 run = False
